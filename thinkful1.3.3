@@ -1,0 +1,24 @@
+#Join
+SELECT name, state, year, warm_month, cold_month FROM cities INNER JOIN weather on name = city;
+
+#Grouping data
+SELECT warm_month, AVG(average_high) FROM weather GROUP BY warm_month;
+
+#Try it!
+#Write a SQL statement which finds the mean of the average high temperatures for all of the cities within a state.
+SELECT state, AVG(average_high) FROM cities INNER JOIN weather on name = city GROUP BY state;
+
+#Ordering data
+SELECT city, average_high FROM weather ORDER BY average_high;
+SELECT city, average_high FROM weather ORDER BY average_high DESC;
+
+#Try it!
+#Write a query which which finds the mean of the average high temperatures for all of the cities within a state, starting with the hottest.
+SELECT state, AVG(average_high) FROM cities INNER JOIN weather on name = city GROUP BY state ORDER BY AVG(average_high) DESC;
+
+#Filtering grouped data
+SELECT warm_month, AVG(average_high) FROM weather GROUP BY warm_month HAVING AVG(average_high) > 65;
+
+#Try it!
+#Write a query which which finds the mean of the average high temperatures for all of the cities within a state, starting with the hottest, and filtering out states with a mean above 65F.
+SELECT state, AVG(average_high) FROM cities INNER JOIN weather on name = city GROUP BY state HAVING AVG(average_high) < 65 ORDER BY AVG(average_high) DESC;
